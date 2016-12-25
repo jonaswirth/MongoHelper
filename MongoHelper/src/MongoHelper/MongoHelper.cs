@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MongoHelper
+namespace MongoHelper.Library
 {
     public class MongoHelper : IDisposable
     {
@@ -22,12 +22,24 @@ namespace MongoHelper
         #endregion
 
         #region Select
+        /// <summary>
+        /// Select count 
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public long SelectCount(string collectionName, FilterDefinition<BsonDocument> filter)
         {
             var collection = _database.GetCollection<BsonDocument>(collectionName);
             return collection.Find(filter).Count();
         }
-
+        /// <summary>
+        /// Selects a list of the given type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collectionName"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public List<T> Select<T>(string collectionName, FilterDefinition<BsonDocument> filter)
         {
             var collection = _database.GetCollection<BsonDocument>(collectionName);
@@ -39,7 +51,13 @@ namespace MongoHelper
             }
             return returnList;
         }
-
+        /// <summary>
+        /// Select a single record of the given type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collectionName"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public T SelectOne<T>(string collectionName, FilterDefinition<BsonDocument> filter)
         {
             var collection = _database.GetCollection<BsonDocument>(collectionName);
@@ -52,6 +70,7 @@ namespace MongoHelper
         }
         #endregion
 
+        #region Insert
         public bool Insert(string collectionName, BsonDocument doc)
         {
             try
@@ -65,7 +84,9 @@ namespace MongoHelper
                 return false;
             }
         }
+        #endregion
 
+        #region Update
         public bool UpdateOne(string collectionName, FilterDefinition<BsonDocument> filter, UpdateDefinition<BsonDocument> update)
         {
             try
@@ -79,6 +100,7 @@ namespace MongoHelper
                 return false;
             }
         }
+        
 
         public bool UpdateArray<T>(string collectionName, string arrayField, List<T> list, FilterDefinition<BsonDocument> filter)
         {
@@ -94,6 +116,7 @@ namespace MongoHelper
                 return false;
             }
         }
+        #endregion
 
         public void Dispose()
         {

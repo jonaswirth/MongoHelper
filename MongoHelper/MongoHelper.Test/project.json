@@ -1,4 +1,4 @@
-{
+﻿{
   "version": "1.0.0-*",
   "buildOptions": {
     "emitEntryPoint": true
@@ -8,8 +8,7 @@
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "1.0.1"
-    },
-    "MongoHelper": "1.0.0-*"
+    }
   },
 
   "frameworks": {

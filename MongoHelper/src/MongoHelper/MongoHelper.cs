@@ -22,6 +22,17 @@ namespace MongoHelper
         #endregion
 
         #region Select
+        #region Select Count
+        /// <summary>
+        /// Returns the count of all recors in the specified collection
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <returns></returns>
+        public long SelectCount(string collectionName)
+        {
+            var collection = _database.GetCollection<BsonDocument>(collectionName);
+            return collection.Find(new BsonDocument()).Count();
+        }
         /// <summary>
         /// Select count 
         /// </summary>
@@ -34,7 +45,45 @@ namespace MongoHelper
             return collection.Find(filter).Count();
         }
         /// <summary>
-        /// Selects a list of the given type
+        /// 
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <param name="field"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public long SelectCount(string collectionName, string field, string value)
+        {
+            var collection = _database.GetCollection<BsonDocument>(collectionName);
+            return collection.Find(Builder.FilterEq(field, value)).Count();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public long SelectCount(string collectionName, string field, ObjectId id)
+        {
+            var collection = _database.GetCollection<BsonDocument>(collectionName);
+            return collection.Find(Builder.FilterEq(field, id)).Count();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collectionName"></param>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public long SelectCount<T>(string collectionName, string field, T value)
+        {
+            var collection = _database.GetCollection<BsonDocument>(collectionName);
+            return collection.Find(Builder.FilterEq<T>(field, value)).Count();
+        }
+        #endregion
+        /// <summary>
+        /// Returns a list of the given type
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="collectionName"></param>

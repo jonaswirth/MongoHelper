@@ -120,6 +120,12 @@ namespace MongoHelper
         #endregion
 
         #region Insert
+        /// <summary>
+        /// Insert a BsonDocument 
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <param name="doc"></param>
+        /// <returns></returns>
         public bool Insert(string collectionName, BsonDocument doc)
         {
             try
@@ -133,9 +139,36 @@ namespace MongoHelper
                 return false;
             }
         }
+        /// <summary>
+        /// Insert an object of any type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collectionName"></param>
+        /// <param name="doc"></param>
+        /// <returns></returns>
+        public bool Insert<T>(string collectionName, T doc)
+        {
+            try
+            {
+                var collection = _database.GetCollection<BsonDocument>(collectionName);
+                collection.InsertOne(doc.ToBsonDocument());
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #endregion
 
         #region Update
+        /// <summary>
+        /// Update an object
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <param name="filter"></param>
+        /// <param name="update"></param>
+        /// <returns></returns>
         public bool UpdateOne(string collectionName, FilterDefinition<BsonDocument> filter, UpdateDefinition<BsonDocument> update)
         {
             try
@@ -150,7 +183,15 @@ namespace MongoHelper
             }
         }
         
-
+        /// <summary>
+        /// Update an Array inside an object
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collectionName"></param>
+        /// <param name="arrayField"></param>
+        /// <param name="list"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public bool UpdateArray<T>(string collectionName, string arrayField, List<T> list, FilterDefinition<BsonDocument> filter)
         {
             try

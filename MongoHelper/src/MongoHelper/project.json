@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-*",
+  "version": "1.0.1-*",
 
   "dependencies": {
     "MongoDB.Driver": "2.4.0",

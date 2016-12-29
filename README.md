@@ -9,3 +9,10 @@ PM> Install-Package MongoHelper
 - MongoDB.Driver (>= 2.4.0) (https://docs.mongodb.com/ecosystem/drivers/csharp/)
 - NETStandard.Library (>= 1.6.0)
 
+# Use
+**Create instance**
+
+``MongoHelper mongo = new MongoHelper(string DbConnection)``
+
+
+

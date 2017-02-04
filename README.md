@@ -15,10 +15,22 @@ PM> Install-Package MongoHelper
 ``MongoHelper mongo = new MongoHelper(string DbConnection)``
 
 **Select Count**<br/>
+
 Select the count of all documents in "collection1"<br/>
-``mongo.SelectCount("collection1")``<br/>
+``int count = mongo.SelectCount("collection1")``<br/>
+
 Select count with filter criteria (string, object)<br/>
-``mongo.SelectCount("collection1", "Key", "Value")``
+``int count = mongo.SelectCount("collection1", "Key", "Value")``<br/>
+
+**Select**
+
+**Insert**
+
+**Update**
+
+**Delete**
+
+**Builder**
 
 
 

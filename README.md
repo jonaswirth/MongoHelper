@@ -24,6 +24,8 @@ Select count with filter criteria (string, object)<br/>
 
 **Select**
 
+**Select One**
+
 **Insert**
 
 **Update**

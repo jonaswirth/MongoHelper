@@ -11,7 +11,7 @@ namespace MongoHelper.Test
     {
         public static void Main(string[] args)
         {
-            MongoHelper mongo = new MongoHelper("test");
+            MongoHelper mongo = new MongoHelper("test", new MyLogger());
             Tests tests = new Tests();
 
             //Select Count no filter

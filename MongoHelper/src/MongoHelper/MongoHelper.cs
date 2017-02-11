@@ -12,12 +12,20 @@ namespace MongoHelper
     {
         protected static IMongoClient _client;
         protected static IMongoDatabase _database;
+        protected static ILogger _logger;
 
         #region Constructors
         public MongoHelper(string dbname)
         {
             _client = new MongoClient();
             _database = _client.GetDatabase(dbname);
+        }
+
+        public MongoHelper(string dbname, ILogger log)
+        {
+            _client = new MongoClient();
+            _database = _client.GetDatabase(dbname);
+            _logger = log;
         }
         #endregion
 
@@ -28,10 +36,18 @@ namespace MongoHelper
         /// </summary>
         /// <param name="collectionName"></param>
         /// <returns></returns>
-        public long SelectCount(string collectionName)
+        public long? SelectCount(string collectionName)
         {
-            var collection = _database.GetCollection<BsonDocument>(collectionName);
-            return collection.Find(new BsonDocument()).Count();
+            try
+            {
+                var collection = _database.GetCollection<BsonDocument>(collectionName);
+                return collection.Find(new BsonDocument()).Count();
+            }
+            catch(Exception ex)
+            {
+                this.WriteError("SelectCount", "SelectCount(string collectionName)", ex.Message);
+                return null; 
+            }
         }
         /// <summary>
         /// Select count 
@@ -159,6 +175,31 @@ namespace MongoHelper
                 return false;
             }
         }
+        /// <summary>
+        /// Insert multiple objects into a collection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collectionName"></param>
+        /// <param name="documents"></param>
+        /// <returns></returns>
+        public bool InsertMany<T>(string collectionName, IEnumerable<T> documents)
+        {
+            try
+            {
+                List<BsonDocument> docs = new List<BsonDocument>();
+                for (int i = 0; i < documents.Count(); i++)
+                {
+                    docs[i] = documents.ElementAt(i).ToBsonDocument();
+                }
+                var collection = _database.GetCollection<BsonDocument>(collectionName);
+                collection.InsertMany(docs);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #endregion
 
         #region Update
@@ -182,7 +223,7 @@ namespace MongoHelper
                 return false;
             }
         }
-        
+
         /// <summary>
         /// Update an Array inside an object
         /// </summary>
@@ -205,6 +246,14 @@ namespace MongoHelper
             {
                 return false;
             }
+        }
+        #endregion
+
+        #region private
+        private void WriteError(string title, string function, string message)
+        {
+            if (_logger != null)
+                _logger.WriteError(title, function, message);
         }
         #endregion
 

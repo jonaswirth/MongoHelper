@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v1.0": {
       "MongoHelper.Test/1.0.0": {
         "dependencies": {
-          "MongoHelper": "1.0.0"
+          "MongoHelper": "1.0.1"
         },
         "runtime": {
           "MongoHelper.Test.dll": {}
@@ -79,7 +79,7 @@
           }
         }
       },
-      "MongoHelper/1.0.0": {
+      "MongoHelper/1.0.1": {
         "dependencies": {
           "MongoDB.Driver": "2.4.0"
         },
@@ -130,7 +130,7 @@
       "serviceable": true,
       "sha512": "sha512-sqzq9GD6/b0yqPuMpgIKBuoLf4VKAj8oAfh4kXSzPaN6eoKY3hRi9C5L27uip25qlU+BGPfb0xh2Rmbwc4jFVA=="
     },
-    "MongoHelper/1.0.0": {
+    "MongoHelper/1.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

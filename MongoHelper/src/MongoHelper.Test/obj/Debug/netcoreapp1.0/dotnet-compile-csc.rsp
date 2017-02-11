@@ -92,6 +92,7 @@
 -r:"C:\Users\Jonas\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\Jonas\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
 -r:"C:\Users\Jonas\Source\Repos\MongoHelper2\MongoHelper\MongoHelper\src\MongoHelper\bin\Debug\netstandard1.6\MongoHelper.dll"
+"C:\Users\Jonas\Source\Repos\MongoHelper2\MongoHelper\MongoHelper\src\MongoHelper.Test\MyLogger.cs"
 "C:\Users\Jonas\Source\Repos\MongoHelper2\MongoHelper\MongoHelper\src\MongoHelper.Test\Program.cs"
 "C:\Users\Jonas\Source\Repos\MongoHelper2\MongoHelper\MongoHelper\src\MongoHelper.Test\Tests.cs"
 "C:\Users\Jonas\Source\Repos\MongoHelper2\MongoHelper\MongoHelper\src\MongoHelper.Test\Properties\AssemblyInfo.cs"

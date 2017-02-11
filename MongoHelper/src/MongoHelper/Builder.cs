@@ -23,5 +23,11 @@ namespace MongoHelper
         {
             return Builders<BsonDocument>.Filter.Eq(field, id);
         }
+
+        public static UpdateDefinition<BsonDocument> Update<T>(string field, T value)
+        {
+            return Builders<BsonDocument>.Update.Push(field, value);
+        }
+        
     }
 }

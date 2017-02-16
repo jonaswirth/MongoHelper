@@ -12,7 +12,13 @@ PM> Install-Package MongoHelper
 # Use
 **Create instance**
 
-``MongoHelper mongo = new MongoHelper(string DbConnection)``
+``MongoHelper mongo = new MongoHelper(string DbConnection)``<br/>
+Since the MongoHelper class implements IDisposable it can be used in a using statement aswell.<br/>
+``using(MongoHelper mongo = new MongoHelper(string DbConnection))
+{
+  ...
+}``
+<br/>
 
 **Select Count**<br/>
 

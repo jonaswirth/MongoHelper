@@ -1,5 +1,5 @@
 # MongoHelper
-C# .NET Core library that helps accessing and performing CRUD operations on a MongoDB database using the official MongoDB driver.
+C# .NET Core library that helps performing CRUD operations on a MongoDB database using the official MongoDB driver.
 
 # Install
 Get it from nuget.org (https://www.nuget.org/packages/MongoHelper/1.0.1) or install it using the package manager console:
@@ -37,6 +37,7 @@ Select count with filter criteria (string, object)<br/>
 **Update**
 
 **Delete**
+Not yet implemented.
 
 **Builder**
 

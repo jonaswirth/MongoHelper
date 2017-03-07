@@ -223,6 +223,28 @@ namespace MongoHelper
                 return false;
             }
         }
+        /// <summary>
+        /// Update an object
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <param name="fieldName">The field name to identify the object to be updated</param>
+        /// <param name="value">The value to the identifier field</param>
+        /// <param name="update"></param>
+        /// <returns></returns>
+        public bool UpdateOne(string collectionName, string fieldName, string value, UpdateDefinition<BsonDocument> update)
+        {
+            try
+            {
+                var filter = Builder.FilterEq(fieldName, value);
+                var collection = _database.GetCollection<BsonDocument>(collectionName);
+                collection.UpdateOne(filter, update);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Update an Array inside an object
@@ -246,6 +268,31 @@ namespace MongoHelper
             {
                 return false;
             }
+        }
+        #endregion
+
+        #region Delete
+        /// <summary>
+        /// Remove an object from  a collection
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public bool Delete(string collectionName, FilterDefinition<BsonDocument> filter)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// Remove an object from a collection
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <param name="fieldName"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool Delete(string collectionName, string fieldName, string value)
+        {
+            var filter = Builder.FilterEq(fieldName, value);
+            throw new NotImplementedException();
         }
         #endregion
 
